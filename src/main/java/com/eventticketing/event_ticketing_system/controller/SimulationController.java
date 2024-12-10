@@ -1,43 +1,47 @@
 package com.eventticketing.event_ticketing_system.controller;
 
-import com.eventticketing.event_ticketing_system.dto.request.StartSimulationRequestDTO;
-import com.eventticketing.event_ticketing_system.dto.response.SimulationStatusResponseDTO;
-import com.eventticketing.event_ticketing_system.exception.CustomException;
-import com.eventticketing.event_ticketing_system.exception.ErrorResponse;
+import com.eventticketing.event_ticketing_system.dto.ConfigurationRequest;
+import com.eventticketing.event_ticketing_system.dto.StatusResponse;
 import com.eventticketing.event_ticketing_system.service.SimulationService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
-@RequestMapping("/api/v1/simulation")
+@RequestMapping("/api/simulation")
 public class SimulationController {
 
     private final SimulationService simulationService;
 
+    // Constructor for dependency injection
     public SimulationController(SimulationService simulationService) {
         this.simulationService = simulationService;
     }
 
+    // Endpoint to start the simulation
     @PostMapping("/start")
-    public ResponseEntity<SimulationStatusResponseDTO> startSimulation(@RequestBody StartSimulationRequestDTO requestDTO) {
-        SimulationStatusResponseDTO response = simulationService.startSimulation(requestDTO);
-        return ResponseEntity.ok(response);
+    public ResponseEntity<String> startSimulation(@RequestBody ConfigurationRequest configRequest) {
+        simulationService.startSimulation(configRequest);
+        return ResponseEntity.ok("Simulation started.");
     }
 
-    @PutMapping("/stop/{simulationId}")
-    public ResponseEntity<SimulationStatusResponseDTO> stopSimulation(@PathVariable Long simulationId) {
-        SimulationStatusResponseDTO response = simulationService.stopSimulation(simulationId);
-        return ResponseEntity.ok(response);
+    // Endpoint to stop the simulation
+    @PostMapping("/stop")
+    public ResponseEntity<String> stopSimulation() {
+        simulationService.stopSimulation();
+        return ResponseEntity.ok("Simulation stopped.");
     }
 
-    @GetMapping("/{simulationId}")
-    public ResponseEntity<?> getSimulationById(@PathVariable Long simulationId) {
-        try {
-            return ResponseEntity.ok(simulationService.getSimulationStatus(simulationId));
-        } catch (CustomException e) {
-            return new ResponseEntity<>(new ErrorResponse("Error", e.getMessage()), HttpStatus.BAD_REQUEST);
-        }
+    // Endpoint to reset the simulation
+    @PostMapping("/reset")
+    public ResponseEntity<String> resetSimulation() {
+        simulationService.resetSimulation();
+        return ResponseEntity.ok("Simulation reset.");
     }
 
+    // Endpoint to get the current simulation status
+    @GetMapping("/status")
+    public ResponseEntity<StatusResponse> getStatus() {
+        return ResponseEntity.ok(simulationService.getStatus());
+    }
 }
