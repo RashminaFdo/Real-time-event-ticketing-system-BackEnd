@@ -1,47 +1,34 @@
 package com.eventticketing.event_ticketing_system.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "transaction_logs")
 public class TransactionLog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false)
-    private String operation;
-
-    @Column(nullable = false)
-    private String timestamp;
-
-    @Column(nullable = false)
+    private int id;
     private String details;
+    private LocalDateTime timestamp;
 
-    // Getters and Setters
-    public Long getId() {
+    public TransactionLog() {
+    }
+
+    public TransactionLog(String details, LocalDateTime timestamp) {
+        this.details = details;
+        this.timestamp = timestamp;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
-    }
-
-    public String getOperation() {
-        return operation;
-    }
-
-    public void setOperation(String operation) {
-        this.operation = operation;
-    }
-
-    public String getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
     }
 
     public String getDetails() {
@@ -50,5 +37,13 @@ public class TransactionLog {
 
     public void setDetails(String details) {
         this.details = details;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
     }
 }

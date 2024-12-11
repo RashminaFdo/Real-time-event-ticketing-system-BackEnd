@@ -1,12 +1,13 @@
 package com.eventticketing.event_ticketing_system.dto;
 
 public class ConfigurationRequest {
+
     private int totalTickets;
     private int ticketReleaseRate;
     private int customerRetrievalRate;
     private int maxCapacity;
-    private int vendorCount;
-    private int customerCount;
+    private int numberOfVendors;
+    private int numberOfCustomers;
 
     // Getters and Setters
     public int getTotalTickets() {
@@ -41,19 +42,19 @@ public class ConfigurationRequest {
         this.maxCapacity = maxCapacity;
     }
 
-    public int getVendorCount() {
-        return vendorCount;
+    public int getNumberOfVendors() {
+        return numberOfVendors;
     }
 
-    public void setVendorCount(int vendorCount) {
-        this.vendorCount = vendorCount;
+    public void setNumberOfVendors(int numberOfVendors) {
+        this.numberOfVendors = numberOfVendors;
     }
 
-    public int getCustomerCount() {
-        return customerCount;
+    public int getNumberOfCustomers() {
+        return numberOfCustomers;
     }
 
-    public void setCustomerCount(int customerCount) {
-        this.customerCount = customerCount;
+    public void setNumberOfCustomers(int numberOfCustomers) {
+        this.numberOfCustomers = numberOfCustomers;
     }
 }

@@ -1,33 +1,28 @@
 package com.eventticketing.event_ticketing_system.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Ticket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
+
     private String eventName;
+
     private boolean isSold;
 
-    public Ticket() {}
+    public Ticket() {
+    }
 
-    public Ticket(String eventName) {
+    public Ticket(String eventName, boolean isSold) {
         this.eventName = eventName;
-        this.isSold = false;
+        this.isSold = isSold;
     }
 
-    // Getters and Setters
-    public Long getId() {
+    public int getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getEventName() {

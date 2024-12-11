@@ -5,23 +5,31 @@ import com.eventticketing.event_ticketing_system.model.TicketPool;
 
 public class Vendor implements Runnable {
 
+    private final int totalTickets;
     private final TicketPool ticketPool;
-    private final int releaseRate;
+    private final String eventName;
 
-    public Vendor(TicketPool ticketPool, int releaseRate) {
+    public Vendor(int totalTickets, TicketPool ticketPool, String eventName) {
+        this.totalTickets = totalTickets;
         this.ticketPool = ticketPool;
-        this.releaseRate = releaseRate;
+        this.eventName = eventName;
     }
 
     @Override
     public void run() {
-        try {
-            while (!Thread.currentThread().isInterrupted()) {
-                ticketPool.addTicket(new Ticket("Event Ticket")); // Add tickets to the pool
-                Thread.sleep(1000 / releaseRate); // Simulate ticket release delay
+        for (int i = 0; i < totalTickets; i++) {
+            Ticket ticket = new Ticket(eventName, false);
+            ticketPool.addTicket(ticket);
+            logTransaction("Ticket created: " + ticket.getId());
+            try {
+                Thread.sleep(1000); // Simulating ticket release rate
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
             }
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt(); // Reset the interrupted status
         }
+    }
+
+    private void logTransaction(String details) {
+        // Log transaction logic here
     }
 }

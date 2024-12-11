@@ -1,26 +1,18 @@
 package com.eventticketing.event_ticketing_system.dto;
 
 public class StatusResponse {
-    private String systemStatus;
-    private int ticketsAvailable;
-    private int activeVendors;
-    private int activeCustomers;
 
-    // Constructor
-    public StatusResponse(String systemStatus, int ticketsAvailable, int activeVendors, int activeCustomers) {
-        this.systemStatus = systemStatus;
-        this.ticketsAvailable = ticketsAvailable;
-        this.activeVendors = activeVendors;
-        this.activeCustomers = activeCustomers;
-    }
+    private boolean isRunning;
+    private int ticketsAvailable;
+    private int totalTicketsSold;
 
     // Getters and Setters
-    public String getSystemStatus() {
-        return systemStatus;
+    public boolean isRunning() {
+        return isRunning;
     }
 
-    public void setSystemStatus(String systemStatus) {
-        this.systemStatus = systemStatus;
+    public void setRunning(boolean running) {
+        isRunning = running;
     }
 
     public int getTicketsAvailable() {
@@ -31,19 +23,11 @@ public class StatusResponse {
         this.ticketsAvailable = ticketsAvailable;
     }
 
-    public int getActiveVendors() {
-        return activeVendors;
+    public int getTotalTicketsSold() {
+        return totalTicketsSold;
     }
 
-    public void setActiveVendors(int activeVendors) {
-        this.activeVendors = activeVendors;
-    }
-
-    public int getActiveCustomers() {
-        return activeCustomers;
-    }
-
-    public void setActiveCustomers(int activeCustomers) {
-        this.activeCustomers = activeCustomers;
+    public void setTotalTicketsSold(int totalTicketsSold) {
+        this.totalTicketsSold = totalTicketsSold;
     }
 }

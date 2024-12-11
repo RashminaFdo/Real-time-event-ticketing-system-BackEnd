@@ -1,9 +1,9 @@
 package com.eventticketing.event_ticketing_system.repository;
 
-import com.eventticketing.event_ticketing_system.model.TransactionLog;
+import com.eventticketing.event_ticketing_system.model.Configuration;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface LogRepository extends JpaRepository<TransactionLog, Integer> {
+public interface ConfigurationRepository extends JpaRepository<Configuration, Integer> {
 }

@@ -10,18 +10,25 @@ public class Configuration {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     private int totalTickets;
-    private int ticketReleaseRate;
-    private int customerRetrievalRate;
-    private int maxCapacity;
+    private int vendorThreads;
+    private int customerThreads;
 
-    // Getters and Setters
-    public Long getId() {
+    public Configuration() {
+    }
+
+    public Configuration(int totalTickets, int vendorThreads, int customerThreads) {
+        this.totalTickets = totalTickets;
+        this.vendorThreads = vendorThreads;
+        this.customerThreads = customerThreads;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -33,27 +40,19 @@ public class Configuration {
         this.totalTickets = totalTickets;
     }
 
-    public int getTicketReleaseRate() {
-        return ticketReleaseRate;
+    public int getVendorThreads() {
+        return vendorThreads;
     }
 
-    public void setTicketReleaseRate(int ticketReleaseRate) {
-        this.ticketReleaseRate = ticketReleaseRate;
+    public void setVendorThreads(int vendorThreads) {
+        this.vendorThreads = vendorThreads;
     }
 
-    public int getCustomerRetrievalRate() {
-        return customerRetrievalRate;
+    public int getCustomerThreads() {
+        return customerThreads;
     }
 
-    public void setCustomerRetrievalRate(int customerRetrievalRate) {
-        this.customerRetrievalRate = customerRetrievalRate;
-    }
-
-    public int getMaxCapacity() {
-        return maxCapacity;
-    }
-
-    public void setMaxCapacity(int maxCapacity) {
-        this.maxCapacity = maxCapacity;
+    public void setCustomerThreads(int customerThreads) {
+        this.customerThreads = customerThreads;
     }
 }
