@@ -5,40 +5,32 @@ import java.util.Queue;
 
 public class TicketPool {
 
-    private final int maxCapacity;
-    private final Queue<Ticket> pool;
+    private final Queue<Ticket> tickets = new LinkedList<>();
+    private int maxCapacity;
 
-    public TicketPool(int maxCapacity) {
+    public void initialize(int totalTickets, int maxCapacity) {
         this.maxCapacity = maxCapacity;
-        this.pool = new LinkedList<>();
-    }
-
-    public synchronized void addTicket(Ticket ticket) {
-        while (pool.size() >= maxCapacity) {
-            try {
-                wait(); // Wait until space is available
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
+        tickets.clear();
+        for (int i = 0; i < totalTickets; i++) {
+            tickets.add(new Ticket("Event " + (i + 1), false));
         }
-        pool.add(ticket);
-        notifyAll(); // Notify waiting consumers
     }
 
-    public synchronized Ticket retrieveTicket() {
-        while (pool.isEmpty()) {
-            try {
-                wait(); // Wait until a ticket is available
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
+    public void clear() {
+        tickets.clear();
+    }
+
+    public void addTicket(Ticket ticket) {
+        if (tickets.size() < maxCapacity) {
+            tickets.add(ticket);
         }
-        Ticket ticket = pool.poll();
-        notifyAll(); // Notify waiting producers
-        return ticket;
     }
 
-    public int getRemainingTickets() {
-        return pool.size();
+    public Ticket retrieveTicket() {
+        return tickets.poll();
+    }
+
+    public Queue<Ticket> getAvailableTickets() {
+        return new LinkedList<>(tickets);
     }
 }

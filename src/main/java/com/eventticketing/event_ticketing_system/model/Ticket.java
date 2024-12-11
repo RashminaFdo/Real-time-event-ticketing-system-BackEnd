@@ -4,13 +4,10 @@ import javax.persistence.*;
 
 @Entity
 public class Ticket {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String eventName;
-
     private boolean isSold;
 
     public Ticket() {

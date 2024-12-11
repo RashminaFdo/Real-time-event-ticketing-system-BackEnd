@@ -4,32 +4,20 @@ import com.eventticketing.event_ticketing_system.model.Ticket;
 import com.eventticketing.event_ticketing_system.model.TicketPool;
 
 public class Vendor implements Runnable {
-
-    private final int totalTickets;
     private final TicketPool ticketPool;
-    private final String eventName;
+    private final int totalTickets;
 
-    public Vendor(int totalTickets, TicketPool ticketPool, String eventName) {
-        this.totalTickets = totalTickets;
+    public Vendor(TicketPool ticketPool, int totalTickets) {
         this.ticketPool = ticketPool;
-        this.eventName = eventName;
+        this.totalTickets = totalTickets;
     }
 
     @Override
     public void run() {
         for (int i = 0; i < totalTickets; i++) {
-            Ticket ticket = new Ticket(eventName, false);
+            Ticket ticket = new Ticket("Event " + (i + 1), false);
             ticketPool.addTicket(ticket);
-            logTransaction("Ticket created: " + ticket.getId());
-            try {
-                Thread.sleep(1000); // Simulating ticket release rate
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
+            System.out.println("[Vendor] Ticket added: " + ticket.getEventName());
         }
-    }
-
-    private void logTransaction(String details) {
-        // Log transaction logic here
     }
 }
