@@ -1,5 +1,5 @@
 package com.eventticketing.event_ticketing_system.dto;
-
+// This class is used to create a configuration request object.
 public class ConfigurationRequest {
 
     private int totalTickets;

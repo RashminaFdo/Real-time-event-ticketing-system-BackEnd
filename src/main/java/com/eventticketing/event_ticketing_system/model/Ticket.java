@@ -3,6 +3,7 @@ package com.eventticketing.event_ticketing_system.model;
 import javax.persistence.*;
 
 @Entity
+// This class is used to create a ticket object.
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

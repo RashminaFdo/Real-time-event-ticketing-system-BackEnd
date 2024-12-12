@@ -1,5 +1,5 @@
 package com.eventticketing.event_ticketing_system.dto;
-
+// This class is used to create a simulation request object.
 public class SimulationRequest {
     private int totalTickets;
     private int ticketReleaseRate;
@@ -38,7 +38,7 @@ public class SimulationRequest {
     public void setMaxTicketCapacity(int maxTicketCapacity) {
         this.maxTicketCapacity = maxTicketCapacity;
     }
-
+    // This method returns a string representation of the object.
     @Override
     public String toString() {
         return "SimulationRequest{" +

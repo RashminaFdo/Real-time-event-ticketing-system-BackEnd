@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+// This class is used to create a service that simulates a ticketing system.
 public class SimulationService {
 
     private final TicketPool ticketPool = new TicketPool();
@@ -54,7 +55,7 @@ public class SimulationService {
 
         return "Simulation started";
     }
-
+    // This method stops the simulation.
     public void stopSimulation() {
         // Stop the simulation
         isRunning = false;

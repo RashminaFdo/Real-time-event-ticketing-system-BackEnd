@@ -2,7 +2,7 @@ package com.eventticketing.event_ticketing_system.model;
 
 import java.util.LinkedList;
 import java.util.Queue;
-
+// This class is used to create a ticket pool object.
 public class TicketPool {
 
     private final Queue<Ticket> tickets = new LinkedList<>();

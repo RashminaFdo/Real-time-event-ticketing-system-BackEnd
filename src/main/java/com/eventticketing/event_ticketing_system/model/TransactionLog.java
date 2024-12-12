@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 @Entity
+// This class is used to create a transaction log object.
 public class TransactionLog {
 
     @Id

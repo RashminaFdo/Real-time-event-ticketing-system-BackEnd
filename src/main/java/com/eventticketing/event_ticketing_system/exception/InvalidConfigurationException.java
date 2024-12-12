@@ -1,8 +1,6 @@
 package com.eventticketing.event_ticketing_system.exception;
 
-/**
- * Custom exception for invalid configuration errors in the ticketing simulation.
- */
+// This class is used to create an exception that is thrown when the configuration is invalid.
 public class InvalidConfigurationException extends RuntimeException {
 
     public InvalidConfigurationException(String message) {

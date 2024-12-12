@@ -1,5 +1,5 @@
 package com.eventticketing.event_ticketing_system.dto;
-
+// This class is used to create a status response object.
 public class StatusResponse {
 
     private boolean isRunning;

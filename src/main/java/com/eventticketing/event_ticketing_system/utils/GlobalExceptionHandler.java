@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
+// This class is used to handle exceptions globally.
 public class GlobalExceptionHandler {
-
+    // This method handles validation exceptions.
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<String> handleValidationExceptions(MethodArgumentNotValidException ex) {
         String errorMessage = ex.getBindingResult()
@@ -19,7 +20,7 @@ public class GlobalExceptionHandler {
                 .orElse("Validation error occurred.");
         return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
     }
-
+    // This method handles general exceptions.
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleGeneralException(Exception ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

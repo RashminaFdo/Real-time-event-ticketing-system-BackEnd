@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+// This class is used to create a configuration object.
 public class Configuration {
 
     @Id

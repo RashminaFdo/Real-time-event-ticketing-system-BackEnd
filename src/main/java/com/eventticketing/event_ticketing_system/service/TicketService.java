@@ -5,6 +5,7 @@ import com.eventticketing.event_ticketing_system.repository.TicketRepository;
 import org.springframework.stereotype.Service;
 
 @Service
+// This class is used to create a service for the Ticket model.
 public class TicketService {
     private final TicketRepository ticketRepository;
 
